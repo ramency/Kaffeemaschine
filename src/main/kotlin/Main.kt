@@ -3,5 +3,7 @@
 fun main() {
     val kaffeemaschine = Kaffeemaschine()
 
-    kaffeemaschine.chooseCoffee()
+    val chosenCoffee = kaffeemaschine.chooseCoffee()
+    kaffeemaschine.processPayment(chosenCoffee)
+    kaffeemaschine.addAdditives()
 }
