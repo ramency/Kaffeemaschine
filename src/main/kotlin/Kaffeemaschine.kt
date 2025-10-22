@@ -1,7 +1,13 @@
-import java.io.Serializable
-import kotlin.math.roundToInt
-import kotlin.math.truncate
+package org.ramency.kaffeemaschine
 
+/**
+ * This class contains all the functions of our coffee machine.
+ *
+ * @constructor Creates a coffee machine object.
+ * @property availableCoffeeMap Contains all coffee types and their prices.
+ * @property acceptedCoinsMap Contains all coin types this machine takes.
+ * @property acceptedAdditivesArray Contains all possible additives for the coffee.
+ */
 class Kaffeemaschine {
     // Map available coffee types to their prices
     val availableCoffeeMap: Map<String, Int> = mapOf(
@@ -27,95 +33,14 @@ class Kaffeemaschine {
         "",
     )
 
-    fun convertMoney(valInCents: Int): String {
-        var euros: Int
-        var cents: Int
-        val valInCentsFr: Double = valInCents.toDouble()
+    // ----------------------------------------------------------------------------------
 
-        euros = truncate(valInCentsFr / 100.0).roundToInt()
-        cents = (valInCentsFr % 100.0).roundToInt()
-
-        val convertedVal: String =
-            if (valInCentsFr > 100.0) {
-                "$euros Euro und $cents Cent"
-            } else if ((valInCentsFr % 100.0) == 0.0) {
-                "$euros Euro"
-            } else {
-                "$cents Cent"
-            }
-
-        return convertedVal
-    }
-
-    // Checks if input is type number and valid
-    fun inputChecker(type: String): Serializable {
-        val input: String = readln()
-        val inputVal: Any
-
-        when (type) {
-            "coffeeChoice" -> {
-                try {
-                    inputVal = input.toInt() - 1
-
-                    if (availableCoffeeMap.entries.indices.contains(inputVal)) {
-                        return inputVal + 1
-                    } else {
-                        throw NumberFormatException()
-                    }
-
-                } catch (e: NumberFormatException) {
-                    println("Die Eingabe ist keine valide Zahl!")
-                    println("Bitte erneut eingeben.")
-                    return inputChecker("coffeeChoice")
-                }
-            }
-
-            "validCoins" -> {
-                try {
-                    inputVal = input.toInt()
-
-                    if (acceptedCoinsMap.containsValue(inputVal)) {
-                        return inputVal
-                    } else {
-                        throw NumberFormatException()
-                    }
-                } catch (e: NumberFormatException) {
-                    println("Die Eingabe ist kein valider Geldbetrag!")
-                    println("Bitte erneut eingeben.")
-                    return inputChecker("validCoins")
-                }
-            }
-
-            "additiveChoice" -> {
-                    val additivesTLC: String = acceptedAdditivesArray.contentToString().lowercase()
-                    val inputTLC: String = input.lowercase()
-
-                try {
-                    if (additivesTLC.contains(inputTLC)) {
-                        return input.replaceFirstChar { it.titlecase() }
-                    } else {
-                        throw Exception()
-                    }
-                } catch (e: Exception) {
-                    println("Die Eingabe ist entspricht keiner der Optionen!")
-                    println("Bitte erneut eingeben.")
-                    return inputChecker("additiveChoice")
-                }
-            }
-
-            else -> {
-                println("Fehler bei der Auswahl eines Input Check Typs")
-                return 0
-            }
-        }
-    }
-
-    fun chooseCoffee(): Number {
+    fun chooseCoffee(): Int {
         println("Welchen Kaffee möchten Sie?")
         for (entry in availableCoffeeMap.entries) {
             val keyIndex = availableCoffeeMap.entries.indexOf(entry)
 
-            val convertedPrice = convertMoney(entry.value)
+            val convertedPrice = HelperFunctions.convertMoney(entry.value)
 
             println("${keyIndex + 1}) ${entry.key} für $convertedPrice")
         }
@@ -123,57 +48,23 @@ class Kaffeemaschine {
         println("")
         println("Bitte geben Sie die gewünschte Zahl ein.")
 
-        val coffeeChoiceNum: Number = inputChecker("coffeeChoice") as Number
-        return coffeeChoiceNum
+        val coffeeChoiceInt: Int = HelperFunctions.inputChecker("coffeeChoice") as Int
+        return coffeeChoiceInt
     }
 
     fun processPayment(chosenCoffee: Number) {
         val coffeeName: String = availableCoffeeMap.keys.toTypedArray()[chosenCoffee as Int - 1]
-        val coffeePrice: Int
+        val coffeePrice: Int = HelperFunctions.getCoffeePriceFromName(coffeeName)
+        val convertedCoffeePrice: String = HelperFunctions.convertMoney(coffeePrice)
         val acceptedCoins: String = acceptedCoinsMap.keys.toString()
 
-        // Potenzielle Verbesserung Nötig (Throw/Catch Exception)
-        if (availableCoffeeMap[coffeeName] != null) {
-            coffeePrice = availableCoffeeMap[coffeeName]!!
-        } else {
-            coffeePrice = 0
-            println("Es gab einen Fehler beim Auslesen des Kaffeepreises!")
-        }
-
         println("Bitte werfen Sie den gewünschten Betrag ein. (Bitte Eingabe in Cent angeben)")
+        println("Gewünschter Betrag: $convertedCoffeePrice für 1x $coffeeName")
+        println("")
         println("Dieser Automat nimmt folgende Münzen.")
         println(acceptedCoins)
-        println("")
 
-        var moneyInput: Int
-        var moneyStored = 0
-        var coffeePayed = false
-
-        while (!coffeePayed) {
-            moneyInput = inputChecker("validCoins") as Int
-            moneyStored += moneyInput
-
-            if (moneyStored == coffeePrice) {
-
-                println("Vielen Dank. Ihr Kaffee wird nun zubereitet.")
-                coffeePayed = true
-
-            } else if (moneyStored > coffeePrice) {
-
-                val returnMoney: String = convertMoney(moneyStored - coffeePrice)
-
-                println("Vielen Dank. Ihr Kaffee wird nun zubereitet.")
-                println("Sie erhalten außerdem $returnMoney zurück.")
-                coffeePayed = true
-
-            } else /* if (moneyStored < coffeePrice) */ {
-
-                val missingMoney: String = convertMoney(coffeePrice - moneyStored)
-                println("Es fehlt ein Betrag von $missingMoney.")
-                println("Bitte werfen Sie weitere Münzen ein.")
-
-            }
-        }
+        HelperFunctions.collectCoins(coffeePrice)
     }
 
     fun addAdditives() {
@@ -182,8 +73,10 @@ class Kaffeemaschine {
         println("")
         println("Auswahlmöglichkeiten: $additiveChoices")
 
-        val chosenAdditive = inputChecker("additiveChoice")
+        val chosenAdditive = HelperFunctions.inputChecker("additiveChoice")
         println("Ihre Auswahl: $chosenAdditive")
+        println("Ihr Kaffee wird nun zubereitet. Bitte warten...")
+        println("")
 
         println("Genießen Sie Ihren Kaffee.")
     }

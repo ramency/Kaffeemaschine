@@ -1,9 +1,11 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-fun main() {
-    val kaffeemaschine = Kaffeemaschine()
+package org.ramency.kaffeemaschine
 
-    val chosenCoffee = kaffeemaschine.chooseCoffee()
-    kaffeemaschine.processPayment(chosenCoffee)
-    kaffeemaschine.addAdditives()
+val kaffeeMaschine: Kaffeemaschine = Kaffeemaschine()
+
+fun main() {
+    while (true) {
+        val chosenCoffee = kaffeeMaschine.chooseCoffee()
+        kaffeeMaschine.processPayment(chosenCoffee)
+        kaffeeMaschine.addAdditives()
+    }
 }
