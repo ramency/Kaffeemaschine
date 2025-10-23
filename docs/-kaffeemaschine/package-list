@@ -1,0 +1,25 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:org.ramency.kaffeemaschine////PointingToDeclaration/-kaffeemaschine/org.ramency.kaffeemaschine/index.html
+$dokka.location:org.ramency.kaffeemaschine//kaffeeMaschine/#/PointingToDeclaration/-kaffeemaschine/org.ramency.kaffeemaschine/kaffee-maschine.html
+$dokka.location:org.ramency.kaffeemaschine//main/#/PointingToDeclaration/-kaffeemaschine/org.ramency.kaffeemaschine/main.html
+$dokka.location:org.ramency.kaffeemaschine/HelperFunctions///PointingToDeclaration/-kaffeemaschine/org.ramency.kaffeemaschine/-helper-functions/index.html
+$dokka.location:org.ramency.kaffeemaschine/HelperFunctions/acceptedAdditivesArray/#/PointingToDeclaration/-kaffeemaschine/org.ramency.kaffeemaschine/-helper-functions/accepted-additives-array.html
+$dokka.location:org.ramency.kaffeemaschine/HelperFunctions/acceptedCoinsMap/#/PointingToDeclaration/-kaffeemaschine/org.ramency.kaffeemaschine/-helper-functions/accepted-coins-map.html
+$dokka.location:org.ramency.kaffeemaschine/HelperFunctions/availableCoffeeMap/#/PointingToDeclaration/-kaffeemaschine/org.ramency.kaffeemaschine/-helper-functions/available-coffee-map.html
+$dokka.location:org.ramency.kaffeemaschine/HelperFunctions/checkAdditiveChoice/#kotlin.String/PointingToDeclaration/-kaffeemaschine/org.ramency.kaffeemaschine/-helper-functions/check-additive-choice.html
+$dokka.location:org.ramency.kaffeemaschine/HelperFunctions/checkCoffeeChoice/#kotlin.String/PointingToDeclaration/-kaffeemaschine/org.ramency.kaffeemaschine/-helper-functions/check-coffee-choice.html
+$dokka.location:org.ramency.kaffeemaschine/HelperFunctions/checkValidCoins/#kotlin.String/PointingToDeclaration/-kaffeemaschine/org.ramency.kaffeemaschine/-helper-functions/check-valid-coins.html
+$dokka.location:org.ramency.kaffeemaschine/HelperFunctions/collectCoins/#kotlin.Int/PointingToDeclaration/-kaffeemaschine/org.ramency.kaffeemaschine/-helper-functions/collect-coins.html
+$dokka.location:org.ramency.kaffeemaschine/HelperFunctions/convertMoney/#kotlin.Int/PointingToDeclaration/-kaffeemaschine/org.ramency.kaffeemaschine/-helper-functions/convert-money.html
+$dokka.location:org.ramency.kaffeemaschine/HelperFunctions/getCoffeePriceFromName/#kotlin.String/PointingToDeclaration/-kaffeemaschine/org.ramency.kaffeemaschine/-helper-functions/get-coffee-price-from-name.html
+$dokka.location:org.ramency.kaffeemaschine/HelperFunctions/inputChecker/#kotlin.String/PointingToDeclaration/-kaffeemaschine/org.ramency.kaffeemaschine/-helper-functions/input-checker.html
+$dokka.location:org.ramency.kaffeemaschine/Kaffeemaschine///PointingToDeclaration/-kaffeemaschine/org.ramency.kaffeemaschine/-kaffeemaschine/index.html
+$dokka.location:org.ramency.kaffeemaschine/Kaffeemaschine/Kaffeemaschine/#/PointingToDeclaration/-kaffeemaschine/org.ramency.kaffeemaschine/-kaffeemaschine/-kaffeemaschine.html
+$dokka.location:org.ramency.kaffeemaschine/Kaffeemaschine/acceptedAdditivesArray/#/PointingToDeclaration/-kaffeemaschine/org.ramency.kaffeemaschine/-kaffeemaschine/accepted-additives-array.html
+$dokka.location:org.ramency.kaffeemaschine/Kaffeemaschine/acceptedCoinsMap/#/PointingToDeclaration/-kaffeemaschine/org.ramency.kaffeemaschine/-kaffeemaschine/accepted-coins-map.html
+$dokka.location:org.ramency.kaffeemaschine/Kaffeemaschine/addAdditives/#/PointingToDeclaration/-kaffeemaschine/org.ramency.kaffeemaschine/-kaffeemaschine/add-additives.html
+$dokka.location:org.ramency.kaffeemaschine/Kaffeemaschine/availableCoffeeMap/#/PointingToDeclaration/-kaffeemaschine/org.ramency.kaffeemaschine/-kaffeemaschine/available-coffee-map.html
+$dokka.location:org.ramency.kaffeemaschine/Kaffeemaschine/chooseCoffee/#/PointingToDeclaration/-kaffeemaschine/org.ramency.kaffeemaschine/-kaffeemaschine/choose-coffee.html
+$dokka.location:org.ramency.kaffeemaschine/Kaffeemaschine/processPayment/#kotlin.Int/PointingToDeclaration/-kaffeemaschine/org.ramency.kaffeemaschine/-kaffeemaschine/process-payment.html
+org.ramency.kaffeemaschine
